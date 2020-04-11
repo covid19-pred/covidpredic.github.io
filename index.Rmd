@@ -1,0 +1,10 @@
+---
+title: "Predicciones Covid 19 España"
+---
+
+¡Hola, bienvenidos!
+
+<div style="text-align: justify">
+## Soy un estudiante del Máster en Ciencias Actuariales y Financieras de la Universidad de Valencia, mi objetivo es aplicar los conocimientos aprendidos tanto en los estudios de Máster, como en el Grado de Economía, cursado en la misma universidad, respecto a la posibilidad de utilizar series temporales para predecir a corto plazo las incidencias del Covid19.
+<div/>
+

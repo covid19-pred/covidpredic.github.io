@@ -1,0 +1,24 @@
+---
+title: "Gráfico"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(cache=TRUE, warning = FALSE, echo=FALSE, fig.width= 7)
+
+```
+
+<div style="text-align: justify">
+## En el siguiente gráfico encontramos la curva de fallecimientos en España desde el día uno hasta hoy, mediante una línea de color negro, y se añade una proyección a 10 días derivado del análisis realizado.
+<div/>
+
+
+```{r}
+prediccion3<-exp(lnpredicfallecidos3[[1]])
+plot(exp(lnfallecidos[]),xlim=c(0,50),ylim=c(0,1000),ylab="Número de fallecimientos", xlab="Días", main="Fallecimientos observados+predicción")
+lines(prediccion3,col="red")
+```
+
+
+
+
+

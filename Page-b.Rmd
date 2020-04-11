@@ -1,0 +1,19 @@
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(cache=TRUE, warning = FALSE, echo=FALSE, fig.width= 7)
+```
+
+
+<div style="text-align: justify">
+##  La siguiente tabla presenta las predicciones estimadas para los próximos 10 días. 
+<div/>
+
+```{r}
+library(kableExtra)
+Días<-c(11, 12, 13, 14, 15, 16, 17, 18, 19, 20)
+Fallecidos<-prediccion3
+kable(cbind(Días,Fallecidos), padding = 0,align ="c",row.names=FALSE,knitr.table.format = "html")
+```
+```
+

@@ -1,0 +1,55 @@
+---
+title: "Análisis de series temporales"
+---
+
+```{rsetup, include=FALSE}
+knitr::opts_chunk$set(cache=TRUE, warning = FALSE, echo=FALSE, fig.width= 7)
+
+```
+
+<div style="text-align: justify">
+## En primer lugar se presentan los datos observados hasta el momento del COVID 19 respecto a los fallecimientos:
+<div/>
+
+```{r}
+fallecimientos<-read.csv("C:/Users/euntr/Desktop/COVID/coviddiferenciasmortalidad.csv",header=FALSE,sep=";")
+lnfallecidos<-as.ts(log(fallecimientos))
+plot(exp(lnfallecidos), xlim=c(0,50), ylim=c(0,1000), ylab="Número de fallecimientos", xlab="Días", main="Fallecimientos observados")
+library(forecast)
+```
+
+<div style="text-align: justify">
+## La serie temporal será elegida bajo el criterio de mínimo valor de AIC, para ello utilizaremos una función del programa R, la cuál recursivamente realiza combinaciones de los posibles modelos ARIMA y elige aquel que devuelve menor AIC.
+## El modelo será un ARIMA(1,2,2)
+<div/>
+
+
+```{r}
+ajustefallecidos3<-arima(lnfallecidos,order=c(1,2,2))
+lnpredicfallecidos3<-predict(ajustefallecidos3,n.ahead = 10)
+```
+
+
+
+<div style="text-align: justify">
+## Se realizarán distintos análisis para estudiar el resultado del modelo elegido. 
+## Ha sido necesario realizar transformaciones para conseguir la estacionaridad de la serie temporal.
+<div/>
+
+```{r}
+library(zoo)
+library(lmtest)
+library(FitAR)
+coeftest(ajustefallecidos3)
+confint(ajustefallecidos3)
+acf(ajustefallecidos3$residuals)
+boxresult3=LjungBoxTest (ajustefallecidos3$residuals,k=2,StartLag=1)
+boxresult3
+plot(boxresult3[,3],main= "Ljung-Box Q Test", ylab= "P-values", xlab= "Lag")
+qqnorm(ajustefallecidos3$residuals)
+```
+
+
+
+
+
